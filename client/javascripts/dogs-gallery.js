@@ -15,31 +15,43 @@ let clickHandler = function() {
   let prefixURL = "https://dog.ceo/api/breed/";
   let suffixURL = "/images/random/6";
   //get value entered by user from textbox
-  let breedTag = document.querySelector('input[type = "text"]').value;
+
+  let breedTag = $('input[type = "text"]')
+    .val()
+    .toLowerCase();
+
+  /* let breedTag = document
+    .querySelector('input[type = "text"]')
+    .value.toLowerCase();
+    */
+
+  // console.log(breedTag)
   let requestURL = prefixURL + breedTag + suffixURL;
   console.log(requestURL);
 
   //clear old photos
-  document.querySelector(".photos").innerHTML = "";
+  $(".photos").html("");
+  //document.querySelector(".photos").innerHTML = "";
 
   $.getJSON(requestURL, function(dogResponse) {
+    // console.log(dogResponse.message)
     dogResponse.message.forEach(function(imgURL, index) {
-      //We need only six images for the Gallery
-      if (index < 6) {
-        // create a new element to hold the image
-        // but hide it so we can fade it in
-        let imgElem = document.createElement("img");
-        imgElem.hidden = true;
+      // console.log(`${imgURL} ${index}`)
 
-        // set the attribute to the response url
-        imgElem.setAttribute("src", imgURL);
-        imgElem.setAttribute("width", "100");
+      // create a new element to hold the image
+      let imgElem = $("<img>");
+      //let imgElem = document.createElement("img");
+      imgElem.hidden = true;
 
-        // attach the img tag to the main
-        // photos element and then fade it in
-        document.querySelector(".photos").appendChild(imgElem);
-        imgElem.hidden = false;
-      }
+      // set the attribute to the response url
+      imgElem.attr("src", imgURL);
+      imgElem.attr("width", "100");
+
+      // attach the img tag to the main
+
+      $(".photos").append(imgElem);
+      //document.querySelector(".photos").appendChild(imgElem);
+      imgElem.hidden = false;
     });
   }).fail(failHandler);
 };
