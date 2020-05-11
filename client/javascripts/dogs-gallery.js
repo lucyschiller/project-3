@@ -11,21 +11,29 @@ let failHandler = () => {
 
 //1. Define the onclick handler
 let clickHandler = function() {
-  let imgElem;
-  let prefixURL = "https://dog.ceo/api/breed/";
-  let suffixURL = "/images/random/6";
-  //get value entered by user from textbox
-
-  let breedTag = $('input[type = "text"]')
+  let imgElem, breedTag;
+  // splitting user input by spaces
+  let value = $('input[type = "text"]')
     .val()
     .toLowerCase();
+  let result = value.split(" ");
+  //console.log(result);
+  if (result.length == 1) {
+    // differentiating the words for the URL
+    breedTag = result[0];
+  } else {
+    breedTag = result[1] + "/" + result[0];
+  }
+  //console.log(breedTag);
+  /*
+  if (result[1] != undefined) {
+    return `/${result[1]}`;
+  }*/
 
-  /* let breedTag = document
-    .querySelector('input[type = "text"]')
-    .value.toLowerCase();
-    */
+  let prefixURL = "https://dog.ceo/api/breed/";
+  let suffixURL = "/images/random/6";
 
-  // console.log(breedTag)
+  //console.log(breedTag)
   let requestURL = prefixURL + breedTag + suffixURL;
   console.log(requestURL);
 
