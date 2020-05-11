@@ -30,41 +30,41 @@ bitBatBotOrNot = n => {
 };
 
 // Req. 4c
-let newArr,
-  arr,
-  value,
-  findAllbitBatBotOrNots1 = arr => {
-    let array = [];
-    value = array.map(bitBatBotOrNot(arr));
-    return `${arr[i]}: ${value}`;
-  };
+let findAllbitBatBotOrNots1 = arr => {
+  let newArr = arr.map(elem => {
+    return `${elem}: ${bitBatBotOrNot(elem)}`;
+  });
+  return newArr;
+};
 
 // Req. 4d
-let findAllbitBatBotOrNots2 = arr => {
-  let result,
-    resultArr = [];
-  for (var i = 0; i < arr.length; i++) {
-    result = bitBatBotOrNot(arr[i]);
-    resultArr.push(`${arr[i]}: ${result}`);
-  }
-  return resultArr;
-};
+let result,
+  findAllbitBatBotOrNots2 = arr => {
+    let newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+      result = bitBatBotOrNot(arr[i]);
+      newArr.push(`${arr[i]}: ${result}`);
+    }
+    return newArr;
+  };
 
 // Req. 4e
 let findAllbitBatBotOrNots3 = arr => {
-  resultArr = [];
+  newArr = [];
   for (var item of arr) {
     result = bitBatBotOrNot(item);
-    resultArr.push(`${arr[item]}: ${result}`);
+    newArr.push(`${item}: ${result}`);
   }
-  return resultArr;
+  return newArr;
 };
 
 // Req. 4f
 let findAllbitBatBotOrNots4 = arr => {
-  newArr = [];
+  let newArr = [],
+    value;
   arr.forEach(item => {
-    (value = bitBatBotOrNot(item)), newArr.push(`${arr[item]}: ${value}`);
+    value = bitBatBotOrNot(item);
+    newArr.push(`${item}: ${value}`);
   });
   return newArr;
 };
