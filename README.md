@@ -1,4 +1,4 @@
-# Project 3 Repo
+# CIT 281 Project 3
 
 [My Github User Page](https://lucyschiller.github.io/)
 
